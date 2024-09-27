@@ -1,7 +1,6 @@
 import random
 from locust import HttpUser, task, between
-from helpers.utils import random_string, check_response, load_test_data
-from helpers.constants import THINK_TIME_MIN, THINK_TIME_MAX
+from helpers import random_string, check_response, load_test_data, THINK_TIME_MIN, THINK_TIME_MAX, PET_ENDPOINT
 
 class UpdatePetUser(HttpUser):
     wait_time = between(THINK_TIME_MIN, THINK_TIME_MAX)
@@ -15,9 +14,15 @@ class UpdatePetUser(HttpUser):
             "status": random.choice(self.test_data['petStatuses'])
         }
 
-        with self.client.put("/pet", json=payload, catch_response=True) as response:
+        with self.client.put(PET_ENDPOINT, json=payload, catch_response=True) as response:
             try:
                 check_response(response)
                 response.success()
             except AssertionError as e:
                 response.failure(str(e))
+
+    def on_start(self):
+        # Verify the API is accessible
+        response = self.client.get("/")
+        if response.status_code != 200:
+            print(f"Warning: API returned status code {response.status_code}")
