@@ -35,7 +35,7 @@ This project contains performance tests for the Petstore API using Locust, a mod
 
 ## Project Structure
 ```
-petstore-performance-testing/
+performance-api-test/
 ├── locustfiles/
 │   ├── create_pet.py
 │   ├── get_pet.py
