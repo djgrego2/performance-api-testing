@@ -15,11 +15,11 @@ This project contains performance tests for the Petstore API using Locust, a mod
 ## Project Setup
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/petstore-performance-testing.git
+   git clone https://github.com/your-username/performance-api-test.git
    ```
 2. Navigate to the project directory:
    ```
-   cd petstore-performance-testing
+   cd performance-api-test
    ```
 3. Create a virtual environment:
    ```
